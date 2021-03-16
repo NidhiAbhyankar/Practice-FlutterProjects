@@ -1,3 +1,4 @@
+import 'package:LoginUI/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'abc@gmail.com',
+      //initialValue: 'abc@gmail.com',
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -33,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'some password',
+      //initialValue: 'some password',
       obscureText: true,
       decoration: InputDecoration(
           hintText: 'Password',
@@ -46,12 +47,16 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
+        shadowColor: Colors.lightBlueAccent.shade200,
         elevation: 5.0,
         child: MaterialButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           minWidth: 200.0,
           height: 42.0,
-          onPressed: () {},
+          onPressed: () {
+            
+            Navigator.of(context).pushNamed(HomePage.tag);
+          },
           color: Colors.lightBlueAccent,
           child: Text(
             'Log In',
@@ -62,19 +67,33 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final forgotLabel = FlatButton(
-      onPressed: (){},
+      onPressed: () {
+        //Navigator.of(context).pushNamed(HomePage.tag);
+      },
       child: Text('Forgot Password?', style: TextStyle(color: Colors.black54)),
     );
     return Scaffold(
-      backgroundColor: Colors.white,
-      body:Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left:24.0),
-          children: <Widget>[
-            
-          ],
-        ),)
-    );
+        backgroundColor: Colors.white,
+        body: Container(
+          alignment: Alignment.center,
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+            children: <Widget>[
+              logo,
+              SizedBox(height: 48.0),
+              email,
+              SizedBox(
+                height: 8.0,
+              ),
+              password,
+              SizedBox(
+                height: 24.0,
+              ),
+              loginButton,
+              forgotLabel
+            ],
+          ),
+        ));
   }
 }
